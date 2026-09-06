@@ -20,11 +20,12 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pyinstaller pandas openpyxl matplotlib numpy reportlab arabic-reshaper python-bidi
+        pip install pyinstaller
+        pip install pandas openpyxl matplotlib numpy reportlab arabic-reshaper python-bidi
     
     - name: Build with PyInstaller
       run: |
-        pyinstaller --onefile --windowed --name "GoldenEagle" --icon=NUL golden_eagle.py
+        pyinstaller --onefile --windowed --name "GoldenEagle" --add-data "golden_eagle_core.py;." --add-data "lang.py;." golden_eagle.py
     
     - name: Upload artifact
       uses: actions/upload-artifact@v4
