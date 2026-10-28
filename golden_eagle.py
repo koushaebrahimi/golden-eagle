@@ -16,7 +16,7 @@ from golden_eagle_core import (
     generate_monthly_report, DATA_FILE
 )
 
-from lang import _, set_language, get_weekdays, get_day_types, get_suggested_tasks
+from lang import _, set_language, get_language, get_weekdays, get_day_types, get_suggested_tasks
 
 # ========== Language Selection ==========
 LANG_FILE = "golden_eagle_lang.json"
@@ -79,8 +79,11 @@ class GoldenEagleApp(tk.Tk):
         save_language(language)
         
         self.title("GOLDEN EAGLE")
-        self.geometry("1100x850")
-        self.minsize(1000, 800)
+        self.geometry("1000x720")
+        self.minsize(900, 650)
+        if sys.platform == "win32":
+            self.state('zoomed')
+            
         
         self.font_family = get_font()
         print(f"✅ Using font: {self.font_family}")
