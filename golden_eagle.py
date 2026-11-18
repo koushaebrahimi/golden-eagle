@@ -79,10 +79,10 @@ class GoldenEagleApp(tk.Tk):
         save_language(language)
         
         self.title("GOLDEN EAGLE")
-        self.geometry("1000x720")
-        self.minsize(900, 650)
-        if sys.platform == "win32":
-            self.state('zoomed')
+        self.geometry("1100x720")
+        self.minsize(1000,700)
+#        if sys.platform == "win32":
+#            self.state('zoomed')
             
         
         self.font_family = get_font()
@@ -227,17 +227,33 @@ class GoldenEagleApp(tk.Tk):
         ttk.Button(ctrl_frame, text=_("Auto-calc Task Hours"), command=self._auto_calc_task_hours, width=20).pack(side=tk.LEFT, padx=3)
         
         # ===== Bottom =====
+        # ===== kousha commented on 18th Nov 2021 ===== 
+        #bottom_frame = ttk.Frame(main)
+        #bottom_frame.pack(fill=tk.X, pady=8)
+        
+        #self.status_label = ttk.Label(bottom_frame, text=_("Status: Ready"), foreground="blue")
+        #self.status_label.pack(side=tk.LEFT, padx=5)
+        
+        #ttk.Button(bottom_frame, text=_("Monthly Report"), command=self._monthly_report, width=16).pack(side=tk.RIGHT, padx=5)
+        #ttk.Button(bottom_frame, text=_("Check Consistency"), command=self._check_consistency, width=16).pack(side=tk.RIGHT, padx=5)
+        #ttk.Button(bottom_frame, text=_("View All Days"), command=self._view_all_days, width=16).pack(side=tk.RIGHT, padx=5)
+        #ttk.Button(bottom_frame, text=_("Exit"), command=self.quit, width=12).pack(side=tk.RIGHT, padx=5)
+                # ===== Bottom =====
         bottom_frame = ttk.Frame(main)
-        bottom_frame.pack(fill=tk.X, pady=8)
-        
-        self.status_label = ttk.Label(bottom_frame, text=_("Status: Ready"), foreground="blue")
+        bottom_frame.pack(fill=tk.X, pady=(10, 0))
+
+        # Left side: Status
+        self.status_label = ttk.Label(bottom_frame, text=_("Status: Ready"), foreground="blue", font=(self.font_family, 14, "bold"))
         self.status_label.pack(side=tk.LEFT, padx=5)
+
+        # Right side: Action buttons
+        ttk.Button(bottom_frame, text=_("Exit"), command=self.quit, width=10).pack(side=tk.RIGHT, padx=3)
+        ttk.Button(bottom_frame, text=_("Monthly Report"), command=self._monthly_report, width=14).pack(side=tk.RIGHT, padx=3)
+        ttk.Button(bottom_frame, text=_("Check Consistency"), command=self._check_consistency, width=14).pack(side=tk.RIGHT, padx=3)
+        ttk.Button(bottom_frame, text=_("View All Days"), command=self._view_all_days, width=14).pack(side=tk.RIGHT, padx=3)
         
-        ttk.Button(bottom_frame, text=_("Monthly Report"), command=self._monthly_report, width=16).pack(side=tk.RIGHT, padx=5)
-        ttk.Button(bottom_frame, text=_("Check Consistency"), command=self._check_consistency, width=16).pack(side=tk.RIGHT, padx=5)
-        ttk.Button(bottom_frame, text=_("View All Days"), command=self._view_all_days, width=16).pack(side=tk.RIGHT, padx=5)
-        ttk.Button(bottom_frame, text=_("Exit"), command=self.quit, width=12).pack(side=tk.RIGHT, padx=5)
-    
+    # ===== kousha commented on 18th Nov 2021 ===== 
+        
     # ========== Helper Methods ==========
     def _get_date_from_entries(self):
         try:
